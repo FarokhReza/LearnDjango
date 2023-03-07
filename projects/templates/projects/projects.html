@@ -1,10 +1,31 @@
 {% extends 'main.html' %}
 
 {% block content %}
+<!-- <p>you are in {{page}} page</p> -->
 
-<h1>Projects Template</h1>
-<p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aliquid est 
-    corrupti reprehenderit sed, modi nostrum ipsa. Debitis ipsa error cumque exercitationem
-    consequatur ea magni, reiciendis ducimus cupiditate commodi consequuntur libero.</p>
+{% if number > 10 %}
+<p>the number greater than ten! </p>
+{% elif number == 10%}
+<p>number is ten!</p>
+{% else %}
+<p>the number less than ten! </p>
+{% endif %}
+
+
+<hr>
+<h1>Projects</h1>
+
+<ul>
+    {% for project in projects %}
+        <!-- <li>Title: <a href="/project/{{project.id}}"> 
+            {{project.title}}</a>--- {{project.description}}</li> -->
+        
+        <li>Title: <a href="{% url 'project' project.id %}"> 
+            {{project.title}}</a>--- {{project.description}}</li>
+        
+            <!-- will go in project url and link it to single-project content -->
+    {% endfor %}
+
+</ul>
 
 {% endblock content %}
