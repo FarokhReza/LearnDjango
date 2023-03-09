@@ -5,18 +5,18 @@ from django.http import HttpResponse
 projectList = [
     {
     'id' : '1',
-    'title' : 'java project',
+    'title' : 'Ecommerce Website',
     'description' : 'this is about a mobile app'
     },
 
     {
     'id' : '2',
-    'title' : 'django project',
+    'title' : 'Protfolio',
     'description' : 'this is about backend'
     },
     {
     'id' : '3',
-    'title' : 'CPP',
+    'title' : 'Mumble social network',
     'description' : 'this is about game'
     }
 ]
