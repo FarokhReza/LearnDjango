@@ -1,3 +1,7 @@
 there is a bug that when i delete my user there projects dose not delete
 and now if i in logout mode and i decide to put a comment for this category
 of projects it give me a this message "You can not review on your work"
+
+js bug
+
+profile user bug

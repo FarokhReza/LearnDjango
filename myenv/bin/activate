@@ -38,7 +38,7 @@ deactivate () {
 # unset irrelevant variables
 deactivate nondestructive
 
-VIRTUAL_ENV="/media/A-data/programming/python/django/myenv"
+VIRTUAL_ENV="/run/media/reza/A-data/programming/python/django/myenv"
 export VIRTUAL_ENV
 
 _OLD_VIRTUAL_PATH="$PATH"
