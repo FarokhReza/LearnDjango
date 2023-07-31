@@ -33,7 +33,7 @@ end
 # Unset irrelevant variables.
 deactivate nondestructive
 
-set -gx VIRTUAL_ENV "/run/media/reza/A-data/programming/python/django/myenv"
+set -gx VIRTUAL_ENV "/home/reza/Desktop/django/myenv"
 
 set -gx _OLD_VIRTUAL_PATH $PATH
 set -gx PATH "$VIRTUAL_ENV/bin" $PATH

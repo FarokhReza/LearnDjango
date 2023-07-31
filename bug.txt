@@ -5,3 +5,7 @@ of projects it give me a this message "You can not review on your work"
 js bug
 
 profile user bug
+
+when i am in login mode and i will go to /register path it show me it should not show me this page
+
+when i delete a user project will not delete
