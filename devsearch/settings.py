@@ -43,6 +43,7 @@ INSTALLED_APPS = [
 
     'projects.apps.ProjectsConfig',  # related apps.py
     'users.apps.UsersConfig',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
