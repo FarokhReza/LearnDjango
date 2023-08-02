@@ -1,9 +1,38 @@
 from rest_framework import serializers
-from projects.models import Project
+from projects.models import Project, Tag, Review
+from users.models import Profile
 
 
-class ProjectSerializers(serializers.ModelSerializer):
+class ReviewSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Review
+        fields = "__all__"
+
+
+class ProfileSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Profile
+        fields = "__all__"
+
+
+class TagSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Tag
+        fields = "__all__"
+
+
+class ProjectSerializer(serializers.ModelSerializer):
+    owner = ProfileSerializer(many=False)
+    tags = TagSerializer(many=True)
+    reviews = serializers.SerializerMethodField()
+    # total = => we we create a function like get_total then we can write in function what we needed
     class Meta:
         model = Project
         fields = '__all__'
+
+    
+    def get_reviews(self, obj):
+        reviews = obj.review_set.all()
+        serializer = ReviewSerializer(reviews, many=True)
+        return serializer.data
 
