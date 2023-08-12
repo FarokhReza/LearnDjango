@@ -2,7 +2,13 @@ console.log('hello')
 
 let projectsUrl = 'http://127.0.0.1:8000/api/projects/'
 let getProjects = () => {
-    fetch(projectsUrl)
+    token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjkxOTI0MDcwLCJpYXQiOjE2OTE4Mzc2NzAsImp0aSI6ImM4NGRhNTI3YmYwNDRiMjE4ZDQ1ZDg1ZmI4ZWZmN2IyIiwidXNlcl9pZCI6MX0.nKTegWnLysQPJkuveY3wb27QHE94nCLLPk3FS1hn9jw'
+
+    fetch(projectsUrl,{
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    })
     .then(response => response.json())
     .then(data => {
         console.log(data)
@@ -12,7 +18,9 @@ let getProjects = () => {
 
 
 let buildProjects = (projects) => {
+
     let projectsWrapper = document.getElementById('projects--wrapper')
+    projectsWrapper.innerHTML = ''
     // console.log('projectsWrapper:', projectsWrapper)
 
 
@@ -25,8 +33,8 @@ let buildProjects = (projects) => {
                 <div>
                     <div class="card--header">
                         <h3>${project.title}</h3>
-                        <strong class="vote--option" >&#43;</strong>
-                        <strong class="vote--option" >&#8722;</strong>
+                        <strong class="vote--option" data-vote="up" data-project="${project.id}" >&#43;</strong>
+                        <strong class="vote--option" data-vote="down" data-project="${project.id}" >&#8722;</strong>
                     </div>
                     <i>${project.vote_ratio}% Positive feedback</i>
                     <p>${project.description.substring(0, 150)}</p>
@@ -37,6 +45,43 @@ let buildProjects = (projects) => {
         projectsWrapper.innerHTML += projectCard
     }
 
+    // add an listener
+
+    addVoteEvents()
     
 }
+
+let addVoteEvents = () => {
+    let voteBtns = document.getElementsByClassName('vote--option')
+    console.log('Vote buttons: ', voteBtns)
+
+    for (let i = 0; voteBtns.length > i;i++) {
+
+        voteBtns[i].addEventListener('click', (e)=> {
+            token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjkxOTI0MDcwLCJpYXQiOjE2OTE4Mzc2NzAsImp0aSI6ImM4NGRhNTI3YmYwNDRiMjE4ZDQ1ZDg1ZmI4ZWZmN2IyIiwidXNlcl9pZCI6MX0.nKTegWnLysQPJkuveY3wb27QHE94nCLLPk3FS1hn9jw'
+            // token = localStorage.getItem('token')
+            let vote = e.target.dataset.vote
+            let project = e.target.dataset.project
+            console.log('PROJECT:', project, 'VOTE: ', vote)
+
+            fetch(`http://127.0.0.1:8000/api/projects/${project}/vote/`, {
+                method: 'POST', 
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: `Bearer ${token}`
+                },
+                body:JSON.stringify({'value': vote})
+
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log('SUCCESS: ', data)
+                getProjects()
+            })
+
+        })
+    }
+}
+
+
 getProjects()

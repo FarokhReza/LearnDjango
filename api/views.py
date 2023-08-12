@@ -21,7 +21,7 @@ def getRoutes(request):
 
 
 @api_view(['GET'])
-# @permission_classes([IsAuthenticated])  # any time user want get project from here it shoulde be
+@permission_classes([IsAuthenticated])  # any time user want get project from here it shoulde be
 # Authenticated
 def getProjects(request):
     print('USER:', request.user)
