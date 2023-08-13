@@ -4,7 +4,7 @@ let projectsUrl = 'http://127.0.0.1:8000/api/projects/'
 let getProjects = () => {
     token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjkxOTI0MDcwLCJpYXQiOjE2OTE4Mzc2NzAsImp0aSI6ImM4NGRhNTI3YmYwNDRiMjE4ZDQ1ZDg1ZmI4ZWZmN2IyIiwidXNlcl9pZCI6MX0.nKTegWnLysQPJkuveY3wb27QHE94nCLLPk3FS1hn9jw'
 
-    fetch(projectsUrl,{
+    fetch(projectsUrl, {
         headers: {
             Authorization: `Bearer ${token}`
         }
