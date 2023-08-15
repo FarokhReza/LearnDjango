@@ -27,8 +27,17 @@ class Profile(models.Model):
     def __str__(self):
         return str(self.username)
     
-    # class Meta:
-    #     ordering = ['created']
+    @property
+    def imageURL(self):
+        try:
+            url = self.profile_image.url
+        except:
+            url = ''
+
+        return url
+    
+    class Meta:
+        ordering = ['created']
 
 class Skill(models.Model):
     owner = models.ForeignKey(
@@ -63,6 +72,9 @@ class Messages(models.Model):
 
     class Meta:
         ordering = ['is_read', '-created']
+
+
+    
         
 
 

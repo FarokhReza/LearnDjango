@@ -41,8 +41,12 @@ def updateUser(sender, instance, created, **kwargs):
         user.save()
 
 def deleteUser(sender, instance, **kwargs):
-    user = instance.user
-    user.delete()
+    try:
+        user = instance.user
+        user.delete()
+    except:
+        pass
+    
 
     # in ordinary when we delete user profile will delete but if we delete 
     # profile will not delete we should use two line code for delete user at the time 
